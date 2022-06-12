@@ -38,7 +38,8 @@ with DAG('file_archive_pipeline',default_args=default_args,
         task_id ='check_file_existence',
         filepath =f"/home/asif/source_systems/test_files/test_file_{ingestion_date}*.csv",
         poke_interval = 30,
-        timeout = 100
+        timeout = 100,
+        mode = 'reschedule'
     )
 
     check_file_existence >> create_daily_ingestion_folder_task >> file_archive_task 
